@@ -20,8 +20,7 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
     
-
-mongoose.connect('mongodb://localhost/Artportfolio', 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Artportfolio', 
 			{ useNewUrlParser: true },
 				 (err, res) => {
 					if (err) 
