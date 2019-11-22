@@ -1,0 +1,31 @@
+<% include ../partials/header(navigation) %> 
+
+     <header class="jumbotron">
+         <div class="container">
+             <h1>The Gallery</h1>
+             <p>A selection of my work</p>
+             <p>
+				 <% if(currentUser !== undefined){ %>
+                        <a class="btn btn-primary btn-md" href="/gallery/new">Add New Card</a>
+                    <% } %>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% card.forEach(function(card){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src="<%= card.image %>">
+                   <div class="caption">
+                       <h4><%= card.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/gallery/<%= card._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+<% include ../partials/footer %>
