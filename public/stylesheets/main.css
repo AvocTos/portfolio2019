@@ -10,6 +10,10 @@
     padding: 9px;
 }
 
+.navbar {
+	background: transparent;
+}
+
 .bg {
     position: absolute;
     top: 0;
@@ -49,7 +53,7 @@ hr {
 
 .btn:hover {
 	color: var(--def);
-	transition-delay: .6s;
+	transition-delay: .3s;
 }
 
 .btn:hover:before {
