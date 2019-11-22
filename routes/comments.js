@@ -1,7 +1,7 @@
 var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Card = require("../models/cards");
-var Comment     = require("/workspace/yelpCamp/models/comments");
+var Comment     = require("/workspace/portfolio2019/models/comments");
 var middleware = require("../middleware");
 
 //Comments New
