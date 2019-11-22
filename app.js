@@ -20,13 +20,12 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/Artportfolio", 
-				{ useNewUrlParser: true },
-				 (err, res) => {
-					if (err) 
-						throw err;
-		console.log('mongoose online');
-		});
+
+var 	mongodbUri 	= require('mongodb-uri'),
+		uri 		= 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g',
+ 		uriObject 	= mongodbUri.parse(uri);
+
+console.log(JSON.stringify(uriObject, null, 2));
 
 
 { useUnifiedTopology: true }
