@@ -8,6 +8,8 @@
   "npm": "6.11.3"
   }
   "scripts": {
+	"heroku-prebuild": "npm",
+	"build": "mongod",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
