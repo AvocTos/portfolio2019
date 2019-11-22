@@ -12,18 +12,16 @@ var express     	= require("express"),
 	User        	= require("./models/user"),
   	Comment     	= require("./models/comments"),
 	Campground  	= require("./models/cards"),
-	dotenv 			= require('dotenv').config();
+	dotenv 			= require('dotenv').config(),
+	mongodbUri 		= require('mongodb-uri'),
+	uri 			= 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g',
+ 	uriObject 		= mongodbUri.parse(uri);
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
     navigationRoutes = require("./routes/navigation"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
-
-
-var 	mongodbUri 	= require('mongodb-uri'),
-		uri 		= 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g',
- 		uriObject 	= mongodbUri.parse(uri);
 
 console.log(JSON.stringify(uriObject, null, 2));
 
