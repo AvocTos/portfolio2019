@@ -19,14 +19,17 @@ var commentRoutes    = require("./routes/comments"),
     navigationRoutes = require("./routes/navigation"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
-    
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Artportfolio', 
-			{ useNewUrlParser: true },
+
+mongoose.connect("mongodb://localhost/Artportfolio", 
+				{ useNewUrlParser: true },
 				 (err, res) => {
 					if (err) 
 						throw err;
-		console.log('Database online');
-	});
+		console.log('mongoose online');
+		});
+
+
+{ useUnifiedTopology: true }
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
