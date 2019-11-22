@@ -1,8 +1,8 @@
-var express = require("express");
-var router  = express.Router({mergeParams: true});
-var Card = require("../models/cards");
-var Comment     = require("/workspace/portfolio2019/models/comments");
-var middleware = require("../middleware");
+var express 	= require("express");
+var router  	= express.Router({mergeParams: true});
+var Card 		= require("../models/cards");
+var Comment     = require("../models/comments");
+var middleware 	= require("../middleware");
 
 //Comments New
 router.get("/new", middleware.isLoggedIn, function(req, res){

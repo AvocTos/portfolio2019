@@ -2,7 +2,7 @@
   "name": "portfolio2019",
   "version": "1.0.0",
   "description": "\"web portfolio 2019\"",
-  "main": "app.js",
+  "main": "portfolio2019",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
