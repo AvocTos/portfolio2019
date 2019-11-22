@@ -1,7 +1,8 @@
 body {
     background: url(https://livingcanvas.co.za/wp-content/uploads/2019/02/LC004-CS-JHB_Skyline_Night_Pano1_Product_Image.jpg);
     background-size: cover;
-    background-position: center; 
+    background-position: center;
+	text-align: center;
 }
 
 .bg {
@@ -20,44 +21,9 @@ html {
     color: white;
 }
 
-.btn {		
-	position: relative;	
-	padding: 1.4rem 4.2rem;
-	padding-right: 3.1rem;
-	font-size: 1.4rem;
-	color: white;
-	letter-spacing: 0.3rem;
-	text-transform: uppercase;
-}
-
-
-.btn:hover {
-	color: var(--def);
-	transition-delay: .6s;
-}
-
-.btn:hover:before {
-	transition-delay: 0s;
-}
-
-
-
-
 h1 {
 	font-weight: 700;
 	font-size: 5em;
-}
-
-
-.content{
-	padding-top: 20%;
-	text-align: center;
-}
-
-.content h1, .content h3{
-    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-                 0px 8px 13px rgba(0,0,0,0.1),
-                 0px 18px 23px rgba(0,0,0,0.1);
 }
 
 hr {
