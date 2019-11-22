@@ -20,6 +20,29 @@ html {
     color: white;
 }
 
+.btn {		
+	position: relative;	
+	padding: 1.4rem 4.2rem;
+	padding-right: 3.1rem;
+	font-size: 1.4rem;
+	color: white;
+	letter-spacing: 0.3rem;
+	text-transform: uppercase;
+}
+
+
+.btn:hover {
+	color: var(--def);
+	transition-delay: .6s;
+}
+
+.btn:hover:before {
+	transition-delay: 0s;
+}
+
+
+
+
 h1 {
 	font-weight: 700;
 	font-size: 5em;
