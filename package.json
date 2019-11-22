@@ -6,12 +6,16 @@
   "engines": {
   "node": "10.16.3",
   "npm": "6.11.3"
-  }
+  },
   "scripts": {
 	"heroku-prebuild": "npm",
 	"build": "mongod",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+  "type" : "git",
+  "url" : "https://github.com/AvocTos/portfolio2019"
   },
   "author": "Sandra Jonsson",
   "license": "ISC",

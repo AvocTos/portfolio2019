@@ -1,4 +1,4 @@
-var Comment     = require("/workspace/yelpCamp/models/comments");
+var Comment     = require("../models/comments");
 var Card 		= require("../models/cards");
 
 module.exports = {
