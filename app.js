@@ -20,13 +20,15 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+//connect to a mongodb server.
+
+//connecting to "MongoClient" interface
 var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
 
 //(Focus on This Variable)
-var url = 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g';      
+var url = process.env.MONGOLAB_URI;   
 //(Focus on This Variable)
 
 // Use connect method to connect to the Server
