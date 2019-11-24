@@ -39,10 +39,7 @@ app.use(require("express-session")({
     secret: 'We work until the work is done',
     resave: false,
     saveUninitialized: false,
-	store: new mongoStore({db: db}),
-    })
-}));
-})
+    }));
 
 mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
 
