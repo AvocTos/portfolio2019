@@ -9,6 +9,7 @@ var express     	= require("express"),
 	LocalStrategy 	= require("passport-local"),
 	methodOverride 	= require("method-override"),
 	session 		= require("express-session"),
+	dotenv			= require("dotenv").config(),
 	seeds      		= require("./seeds"),
 	User        	= require("./models/user"),
   	Comment     	= require("./models/comments"),
@@ -27,7 +28,7 @@ var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
 
-//(Focus on This Variable)
+//MONGOLAB_URL is set in heroku as "mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g"
 var url = process.env.MONGOLAB_URI;   
 //(Focus on This Variable)
 
@@ -46,7 +47,7 @@ var url = process.env.MONGOLAB_URI;
 });
 
 
-mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
+mongoose.connect('url');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
