@@ -19,23 +19,9 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-//setting up the database
-var uri = 'mongodb://heroku_6lk1f10g:8b8m6t2oo0mdkdnm7v93bjrit4@ds063833.mlab.com:63833/heroku_6lk1f10g';
-	
-//Mongoose connect to heroku server
-  mongoose.connect(uri);
-	var db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'db connection error:'));
-	db.once('open', function callback() { Comment, Card, User }
-
-	return mongoose.connection.db.collection('gallery').drop()
-	console.log(err);
-	});
 
 
 mongoose.connect('mongodb://heroku_6lk1f10g:8b8m6t2oo0mdkdnm7v93bjrit4@ds063833.mlab.com:63833/heroku_6lk1f10g');
-
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
