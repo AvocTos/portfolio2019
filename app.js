@@ -20,11 +20,32 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
+var connectionString = "mongodb://username:password@localhost:27017/db_name";
+var dbOptions = { server:{
+    			'auto_reconnect': true,
+    			'poolSize': 20,
+    			socketOptions: {keepAlive: 1}  
+    			}
+				}
+
+// PASSPORT CONFIGURATION
+MongoClient.connect(connectionString, dbOptions, function(err, db) {
+    if(err){
+        console.log(err);            
+    }
+
+app.use(require("express-session")({
+	store: new mongoStore({db: db}),
+    secret: 'We work until the work is done',
+    resave: false,
+    saveUninitialized: false,
+	store: new mongoStore({db: db}),
+    })
+}));
+})
+
 mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
 
-app.use(session({
-    store: new MongoStore({ url: 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g' })
-}));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -35,16 +56,6 @@ app.use(cookieParser('secret'));
 //seeds.seedDB(); //seed the database (removes whole library and adds seeds)
 //seeds.removeAll(); //removes whole library
 
-// PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "We work until the work is done",
-    resave: false,
-    saveUninitialized: false,
-	store: new MongoStore({
-        url: 'mongodb://localhost/test-app',
-        touchAfter: 24 * 3600 // time period in seconds
-    })
-}));
 
 app.use(flash());
 app.use(passport.initialize());
