@@ -21,13 +21,7 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-//connect to a mongodb server.
-
-
-
-// Connection URL. This is where your mongodb server is running.
-
-//MONGOLAB_URL is set in heroku as "mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g"
+// see MONGOLAB_URL in .env file
 var url = process.env.MONGOLAB_URI;   
 
 // Use connect method to connect to the Server
@@ -35,7 +29,8 @@ mongoose.connect(url);
 app.use(require("express-session")({
     secret: "We work until the work is done",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+	useUnifiedTopology: true
 }));
 
 app.use(bodyParser.urlencoded({extended: true}));
