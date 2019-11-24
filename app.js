@@ -46,6 +46,8 @@ var url = process.env.MONGOLAB_URI;
   }
 });
 
+mongoose.connect(url);
+
 app.use(require("express-session")({
     secret: "We work until the work is done",
     resave: false,
