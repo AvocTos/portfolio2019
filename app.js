@@ -30,7 +30,8 @@ app.use(require("express-session")({
     secret: "We work until the work is done",
     resave: false,
     saveUninitialized: false,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useNewUrlParser: true
 }));
 
 app.use(bodyParser.urlencoded({extended: true}));
