@@ -32,7 +32,7 @@ var dbOptions = { server:{
 MongoClient.connect(connectionString, dbOptions, function(err, db) {
     if(err){
         console.log(err);            
-    }
+    } else {
 
 app.use(require("express-session")({
 	store: new mongoStore({db: db}),
@@ -40,6 +40,7 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false,
     }));
+});
 
 mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
 
