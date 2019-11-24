@@ -46,8 +46,12 @@ var url = process.env.MONGOLAB_URI;
   }
 });
 
+app.use(require("express-session")({
+    secret: "We work until the work is done",
+    resave: false,
+    saveUninitialized: false
+}));
 
-mongoose.connect('url');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
