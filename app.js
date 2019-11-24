@@ -11,8 +11,7 @@ var express     	= require("express"),
 	seeds      		= require("./seeds"),
 	User        	= require("./models/user"),
   	Comment     	= require("./models/comments"),
-	Campground  	= require("./models/cards"),
-	dotenv 			= require('dotenv').config();
+	Card		  	= require("./models/cards");
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -20,31 +19,21 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-
+//setting up the database
+var uri = 'mongodb://heroku_6lk1f10g:8b8m6t2oo0mdkdnm7v93bjrit4@ds063833.mlab.com:63833/heroku_6lk1f10g';
+	
 //Mongoose connect to heroku server
-var connectionString = "mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g",
-	dbOptions = { server:{
-			'auto_reconnect': true,
-			'poolSize': 20,
-			socketOptions: {keepAlive: 1}  
-    }
-};
+  mongoose.connect(uri);
+	var db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'db connection error:'));
+	db.once('open', function callback() { Comment, Card, User }
 
-MongoClient.connect(connectionString, dbOptions, function(err, db) {
-    if(err){
-        console.log(err);            
-    }
-
-app.use(express.session({
-        store: new mongoStore({db: db}),
-        secret: 'We work until the work is done',
-		resave: false,
-		saveUninitialized: false,
-    }));
-});
+	return mongoose.connection.db.collection('gallery').drop()
+	console.log(err);
+	});
 
 
-mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
+mongoose.connect('mongodb://heroku_6lk1f10g:8b8m6t2oo0mdkdnm7v93bjrit4@ds063833.mlab.com:63833/heroku_6lk1f10g');
 
 
 app.use(bodyParser.urlencoded({extended: true}));
