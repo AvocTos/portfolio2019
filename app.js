@@ -1,6 +1,7 @@
 var express     	= require("express"),
 	app         	= express(),
     mongoose    	= require("mongoose"),
+	mongodb 		= require('mongodb'),
     passport    	= require("passport"),
 	bodyParser  	= require("body-parser"),
     cookieParser 	= require("cookie-parser"),
@@ -18,6 +19,30 @@ var commentRoutes    = require("./routes/comments"),
     navigationRoutes = require("./routes/navigation"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
+
+//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+var MongoClient = mongodb.MongoClient;
+
+// Connection URL. This is where your mongodb server is running.
+
+//(Focus on This Variable)
+var url = 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g';      
+//(Focus on This Variable)
+
+// Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+
+    // do some work here with the database.
+
+    //Close connection
+    db.close();
+  }
+});
+
 
 mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
 app.use(bodyParser.urlencoded({extended: true}));
