@@ -22,11 +22,12 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
 // see MONGOLAB_URL in .env file
-var url = process.env.MONGOLAB_URI;
+var url = "mongodb://'potato123':'potato123'@ds063833.mlab.com:63833/heroku_6lk1f10g";
 
 // Use connect method to connect to the Server
 mongoose.connect(url, {
-    useMongoClient: true
+    useUnifiedTopology: true,
+	useNewUrlParser: true
 });
 
 var db = mongoose.connection;
