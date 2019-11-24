@@ -13,9 +13,6 @@ var express     	= require("express"),
   	Comment     	= require("./models/comments"),
 	Campground  	= require("./models/cards"),
 	dotenv 			= require('dotenv').config(),
-	mongodbUri 		= require('mongodb-uri'),
-	uri 			= 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g',
- 	uriObject 		= mongodbUri.parse(uri);
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -23,10 +20,11 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-console.log(JSON.stringify(uriObject, null, 2));
+mongoose.connect('mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g');
 
-
-{ useUnifiedTopology: true }
+app.use(session({
+    store: new MongoStore({ url: 'mongodb://AvocTos:l.Minor33@ds063833.mlab.com:63833/heroku_6lk1f10g' })
+}));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -41,7 +39,11 @@ app.use(cookieParser('secret'));
 app.use(require("express-session")({
     secret: "We work until the work is done",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+	store: new MongoStore({
+        url: 'mongodb://localhost/test-app',
+        touchAfter: 24 * 3600 // time period in seconds
+    })
 }));
 
 app.use(flash());
