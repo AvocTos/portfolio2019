@@ -12,7 +12,7 @@ var express     	= require("express"),
 	User        	= require("./models/user"),
   	Comment     	= require("./models/comments"),
 	Campground  	= require("./models/cards"),
-	dotenv 			= require('dotenv').config(),
+	dotenv 			= require('dotenv').config();
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
