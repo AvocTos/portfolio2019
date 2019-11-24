@@ -22,10 +22,18 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
 // see MONGOLAB_URL in .env file
-var url = process.env.MONGOLAB_URI;   
+var url = process.env.MONGOLAB_URI;
 
 // Use connect method to connect to the Server
-mongoose.connect(url);
+mongoose.connect(url, {
+    useMongoClient: true
+});
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
 app.use(require("express-session")({
     secret: "We work until the work is done",
     resave: false,
