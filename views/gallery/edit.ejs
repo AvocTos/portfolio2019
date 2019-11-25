@@ -21,7 +21,7 @@
             </form>
 			
 			<% if(currentUser && card.author.id.equals(currentUser._id)){ %>
-            <form style="display: inline" class="pull-right" action="/gallery/<%= card._id%>?_method=DELETE" method="POST">
+            <form style="display: inline" class="pull-right" action="/gallery/<%= card._id%>/apple?_method=DELETE" method="POST">
                 <button class="btn btn-xs btn-danger">delete card</button>
 			</form>
             <% } %>
