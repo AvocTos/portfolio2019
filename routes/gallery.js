@@ -41,7 +41,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             console.log(err);
         } else {
             //redirect back to campgrounds page
-            console.log(newlyCreated + req.params.id);
+            console.log(newlyCreated);
             res.redirect("/gallery");
         }
     });
@@ -61,7 +61,7 @@ router.get("/:id", function(req, res){
         } else {
             console.log(foundCard)
             //render show template with that card
-            res.render("gallery/show", {Card: foundCard});
+            res.render("gallery/show", {card: foundCard});
         }
     });
 });
