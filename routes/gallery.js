@@ -91,8 +91,9 @@ router.put("/:id", function(req, res){
     });
 });
 
+//delete route
 router.delete("/:id",middleware.checkUserCard, function(req, res){
-    Comment.findByIdAndRemove(req.params.id, function(err){
+    Card.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log("PROBLEM - deleting card!");
         } else {
