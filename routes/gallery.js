@@ -12,10 +12,15 @@ router.get("/", function(req, res){
        if(err){
            console.log(err);
        } else {
-            res.render("gallery/index",{card: allCards});
-            }
-		});
-    });
+            request('https://maps.googleapis.com/maps/api/geocode/json?address=sardine%20lake%20ca&key=AIzaSyBtHyZ049G_pjzIXDKsJJB5zMohfN67llM', function (error, response, body) {	
+            if (!error && response.statusCode == 200) {	
+                console.log(body); // Show the HTML for the Modulus homepage.	
+                res.render("gallery/index",{card:allCards});	
+            }	
+		});	
+       }	
+    });	
+});	
 
 //CREATE - add new card to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
@@ -47,10 +52,12 @@ router.post("/", middleware.isLoggedIn, function(req, res){
     });
 });
 
+
 //NEW - show form to create new card
 router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("gallery/new"); 
 });
+
 
 // SHOW - shows more info about one card
 router.get("/:id", function(req, res){
@@ -66,6 +73,7 @@ router.get("/:id", function(req, res){
     });
 });
 
+//show edit page
 router.get("/:id/edit", middleware.checkUserCard, function(req, res){
     console.log("IN EDIT!");
     //find the card with provided ID
@@ -80,7 +88,11 @@ router.get("/:id/edit", middleware.checkUserCard, function(req, res){
 });
 
 router.put("/:id", function(req, res){
-    var newData = {name: req.body.name, image: req.body.image, description: req.body.description, price: req.body.price};
+    var newData = {name: req.body.name, 
+				   image: req.body.image, 
+				   description: req.body.description, 
+				   price: req.body.price};
+	
     Card.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, card){
         if(err){
             req.flash("error", err.message);
