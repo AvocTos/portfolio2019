@@ -92,19 +92,5 @@ router.put("/:id", function(req, res){
     });
 });
 
-//Destroy card route
-router.delete("/:_id",middleware.checkUserCard, function(req, res){
-    Card.findById(req.params.id, function(err, card){
-		if(err){
-            req.flash("error", err.message);
-            res.redirect("back");
-        } else {
-		  card.remove();
-		  req.flash("success", 'Card deleted successfully!');
-		  res.redirect("/gallery");
-		});
-    });
-});
-
 
 module.exports = router;

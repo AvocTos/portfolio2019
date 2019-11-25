@@ -21,15 +21,5 @@ var cardSchema = new mongoose.Schema({
    ]
 });
 
-cardSchema.pre('remove', async function(next) {
-	if(err){
-		res.redirect("back");
-	} else {
-		await Comment.remove ({
-			"_id": {
-			$in: this.comments
-			}
-		});
-	});
 
 module.exports = mongoose.model("card", cardSchema);
