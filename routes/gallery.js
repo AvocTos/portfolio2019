@@ -1,6 +1,6 @@
 var express 	= require("express");
 var router  	= express.Router();
-var Card 		= require("../models/cards");
+var Cards 		= require("../models/cards");
 var Comment 	= require("../models/comments");
 var middleware 	= require("../middleware");
 var request 	= require("request");
@@ -8,7 +8,7 @@ var request 	= require("request");
 //INDEX - show all cards
 router.get("/", function(req, res){
     // Get all cards from DB
-    Card.find({}, function(err, allCards){
+    Cards.find({}, function(err, allCards){
        if(err){
            console.log(err);
        } else {
@@ -41,7 +41,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 				   author: author};
 
     // Create a new card and save to DB
-    Card.create(newCard, function(err, newlyCreated){
+    Cards.create(newCard, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
@@ -62,7 +62,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // SHOW - shows more info about one card
 router.get("/:id", function(req, res){
     //find the card with provided ID
-    Card.findById(req.params.id).populate("comments").exec(function(err, foundCard){
+    Cards.findById(req.params.id).populate("comments").exec(function(err, foundCard){
         if(err){
             console.log(err);
         } else {
@@ -77,7 +77,7 @@ router.get("/:id", function(req, res){
 router.get("/:id/edit", middleware.checkUserCard, function(req, res){
     console.log("IN EDIT!");
     //find the card with provided ID
-    Card.findById(req.params.id, function(err, foundCards){
+    Cards.findById(req.params.id, function(err, foundCards){
         if(err){
             console.log(err);
         } else {
@@ -93,7 +93,7 @@ router.put("/:id", function(req, res){
 				   description: req.body.description, 
 				   price: req.body.price};
 	
-    Card.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, card){
+    Cards.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, card){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
