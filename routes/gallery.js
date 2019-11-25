@@ -1,8 +1,8 @@
-var express = require("express");
-var router  = express.Router();
-var Cards = require("../models/cards");
-var middleware = require("../middleware");
-var request = require("request");
+var express 	= require("express");
+var router  	= express.Router();
+var Cards 		= require("../models/cards");
+var middleware 	= require("../middleware");
+var request 	= require("request");
 
 //INDEX - show all cards
 router.get("/", function(req, res){
@@ -92,12 +92,12 @@ router.put("/:id", function(req, res){
 });
 
 //delete route
-router.delete("/:id",middleware.checkUserCard, function(req, res){
+router.delete("/:card._id",middleware.checkUserCard, function(req, res){
     Card.findByIdAndRemove(req.params.id, function(err){
         if(err){
-            console.log("PROBLEM - deleting card!");
+            console.log("unable to delete card! error");
         } else {
-            res.redirect("/gallery");
+            res.redirect("/");
         }
     })
 });

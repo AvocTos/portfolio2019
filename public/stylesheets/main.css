@@ -43,9 +43,7 @@ hr {
 
 .btn {		
 	position: relative;	
-	padding: 1.4rem 4.2rem;
-	padding-right: 3.1rem;
-	font-size: 1.4rem;
+	padding-right: 1.0rem;
 	color: white;
 	letter-spacing: 0.3rem;
 	text-transform: uppercase;

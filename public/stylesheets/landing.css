@@ -16,6 +16,12 @@ body {
                  0px 18px 23px rgba(0,0,0,0.1);
 }
 
-.btn {
+.btn {		
+	position: relative;	
+	padding: 1.4rem 4.2rem;
+	padding-right: 3.1rem;
+	font-size: 1.4rem;
 	color: black;
+	letter-spacing: 0.3rem;
+	text-transform: uppercase;
 }

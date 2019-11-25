@@ -45,6 +45,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
    });
 });
 
+//edit comment
 router.get("/:commentId/edit", middleware.isLoggedIn, function(req, res){
     // find campground by id
     Comment.findById(req.params.commentId, function(err, comment){
