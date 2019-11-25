@@ -1,3 +1,19 @@
 .container {
-	color: #4179B6
+	color: #4179B6;
 }
+
+p {
+	color: #4179B6;
+}
+
+.btn-xs {	
+	padding: 0.4rem 2.2rem;
+	padding-right: 1.5rem;
+	font-size: 0.4rem;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+}
+
+h4, h1 {
+	color: #333;
+} 
