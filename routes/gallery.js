@@ -1,17 +1,17 @@
 var express 	= require("express");
 var router  	= express.Router();
-var Cards 		= require("../models/cards");
+var Card 		= require("../models/cards");
 var middleware 	= require("../middleware");
 var request 	= require("request");
 
 //INDEX - show all cards
 router.get("/", function(req, res){
     // Get all cards from DB
-    Cards.find({}, function(err, allCards){
+    Card.find({}, function(err, allCards){
        if(err){
            console.log(err);
        } else {
-           request('https://maps.googleapis.com/maps/api/geocode/json?address=sardine%20lake%20ca&key=AIzaSyBtHyZ049G_pjzIXDKsJJB5zMohfN67llM', function (error, response, body) {
+           function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log(body); // Show the HTML for the Modulus homepage.
                 res.render("gallery/index",{card: allCards});
@@ -24,23 +24,28 @@ router.get("/", function(req, res){
 //CREATE - add new card to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to campgrounds array
-    var name = req.body.name;
-    var image = req.body.image;
-    var description = req.body.description;
-	var price = req.body.price;
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newCard = {name: name, image: image, description: description, price: price, author: author}
+    var name 	= req.body.name,
+        image 	= req.body.image,
+        description = req.body.description,
+	    price 	= req.body.price,
+        author 	= {
+        		  id: req.user._id,
+        		  username: req.user.username
+            };
+	
+    var newCard = {name: name, 
+				   image: image, 
+				   description: description, 
+				   price: price, 
+				   author: author};
 
     // Create a new card and save to DB
-    Cards.create(newCard, function(err, newlyCreated){
+    Card.create(newCard, function(err, newlyCreated){
         if(err){
             console.log(err);
         } else {
             //redirect back to campgrounds page
-            console.log(newlyCreated);
+            console.log(newlyCreated + req.params.id);
             res.redirect("/gallery");
         }
     });
@@ -54,7 +59,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // SHOW - shows more info about one card
 router.get("/:id", function(req, res){
     //find the card with provided ID
-    Cards.findById(req.params.id).populate("comments").exec(function(err, foundCard){
+    Card.findById(req.params.id).populate("comments").exec(function(err, foundCard){
         if(err){
             console.log(err);
         } else {
@@ -68,7 +73,7 @@ router.get("/:id", function(req, res){
 router.get("/:id/edit", middleware.checkUserCard, function(req, res){
     console.log("IN EDIT!");
     //find the card with provided ID
-    Cards.findById(req.params.id, function(err, foundCards){
+    Card.findById(req.params.id, function(err, foundCards){
         if(err){
             console.log(err);
         } else {
@@ -80,7 +85,7 @@ router.get("/:id/edit", middleware.checkUserCard, function(req, res){
 
 router.put("/:id", function(req, res){
     var newData = {name: req.body.name, image: req.body.image, description: req.body.description, price: req.body.price};
-    Cards.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, card){
+    Card.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, card){
         if(err){
             req.flash("error", err.message);
             res.redirect("back");
@@ -91,13 +96,14 @@ router.put("/:id", function(req, res){
     });
 });
 
-//delete route
-router.delete("/:card._id/banana",middleware.checkUserCard, function(req, res){
-    Cards.findByIdAndRemove(req.params.id, function(err){
+//Destroy card route
+router.delete("/:_id",middleware.checkUserCard, function(req, res){
+    Card.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log("unable to delete card! error");
+			res.redirect("/gallery");
         } else {
-            res.redirect("/");
+            res.redirect("/gallery");
         }
     })
 });
