@@ -11,6 +11,7 @@
                     </p>
                     <% if(currentUser && card.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-warning" href="/gallery/<%= card._id %>/edit">Edit Card</a>
+					<% } %>
                 </div>
             </div>
             <div class="well">
