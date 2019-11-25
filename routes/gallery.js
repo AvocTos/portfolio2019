@@ -1,6 +1,7 @@
 var express 	= require("express");
 var router  	= express.Router();
 var Card 		= require("../models/cards");
+var Comment 	= require("../models/comments");
 var middleware 	= require("../middleware");
 var request 	= require("request");
 
@@ -11,7 +12,6 @@ router.get("/", function(req, res){
        if(err){
            console.log(err);
        } else {
-            console.log(body); // Show the HTML for the Modulus homepage.
             res.render("gallery/index",{card: allCards});
             }
 		});
@@ -93,15 +93,14 @@ router.put("/:id", function(req, res){
 });
 
 //Destroy card route
-router.delete("/:_id",middleware.checkUserCard, function(req, res){
-    Card.findByIdAndRemove(req.params.id, function(err){
-        if(err){
-            console.log("unable to delete card! error");
-			res.redirect("/gallery");
-        } else {
-            res.redirect("/gallery");
-        }
-    })
+router.delete("/:_id",middleware.checkUserCard, function(req, res, next){
+    Card.findById(req.params.id, function(err, card){
+		if(err) return next(err);
+		  card.remove();
+		  req.flash("success", 'Card deleted successfully!');
+		  res.redirect("/gallery");
+		});
+    });
 });
 
 

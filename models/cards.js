@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+	comment  = require("./comment");
 
 var cardSchema = new mongoose.Schema({
    name: String,
@@ -18,6 +19,18 @@ var cardSchema = new mongoose.Schema({
          ref: "Comment"
       }
    ]
+});
+
+cardSchema.pre('remove', async function(next) {
+	try{
+		await Comment.remove ({
+			"_id": {
+			$in: this.comments
+			}
+		});
+	next();
+  } catch(err)
+	next(err);
 });
 
 module.exports = mongoose.model("card", cardSchema);
