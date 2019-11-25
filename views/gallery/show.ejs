@@ -25,7 +25,7 @@
                             <!-- <span class="pull-right">10 days ago</span> -->
                        <div>
                            <p><%= comment.text %></p> 
-                            <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && card.author.id.equals(currentUser._id)){ %>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                     <a href="/gallery/<%= card._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-info">EDIT</a>
                             <% } %> 
                        	  </div>
