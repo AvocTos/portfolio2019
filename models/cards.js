@@ -29,8 +29,7 @@ cardSchema.pre('remove', async function(next) {
 			}
 		});
 	next();
-  } catch(err)
-	console.log(err);
+  }
 });
 
 module.exports = mongoose.model("card", cardSchema);
