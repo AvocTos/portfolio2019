@@ -70,7 +70,7 @@ router.put("/:commentId", function(req, res){
 router.delete("/:commentId",middleware.checkUserComment, function(req, res){
     Comment.findByIdAndRemove(req.params.commentId, function(err){
         if(err){
-            console.log("PROBLEM!");
+            console.log("unable to delete comment! error");
         } else {
             res.redirect("/gallery/" + req.params.id);
         }
