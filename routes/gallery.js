@@ -93,7 +93,7 @@ router.put("/:id", function(req, res){
 
 //delete route
 router.delete("/:card._id",middleware.checkUserCard, function(req, res){
-    Card.findByIdAndRemove(req.params.id, function(err){
+    Cards.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log("unable to delete card! error");
         } else {
