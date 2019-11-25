@@ -19,6 +19,13 @@
                     <button class="btn btn-lg btn-primary btn-block">Update!</button>
                 </div>
             </form>
+			
+			<% if(currentUser && card.author.id.equals(currentUser._id)){ %>
+            <form style="display: inline" class="pull-right" action="/gallery/<%= card._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">delete card</button>
+			</form>
+            <% } %>
+			
             <a href="/gallery">Go Back</a>
         </div>
     </div>
