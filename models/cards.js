@@ -1,5 +1,4 @@
-var mongoose = require("mongoose"),
-	comment  = require("./comment");
+var mongoose = require("mongoose");
 
 var cardSchema = new mongoose.Schema({
    name: String,
