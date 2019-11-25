@@ -60,3 +60,7 @@ hr {
 .btn:hover:before {
 	transition-delay: 0s;
 }
+
+i {
+	margin-left: 20px;
+}

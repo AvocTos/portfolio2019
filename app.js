@@ -1,6 +1,7 @@
 var express     	= require("express"),
 	app         	= express(),
     mongoose    	= require("mongoose"),
+	mongodb 		= require('mongodb'),
     passport    	= require("passport"),
 	bodyParser  	= require("body-parser"),
     cookieParser 	= require("cookie-parser"),
@@ -8,11 +9,11 @@ var express     	= require("express"),
 	LocalStrategy 	= require("passport-local"),
 	methodOverride 	= require("method-override"),
 	session 		= require("express-session"),
+	dotenv			= require("dotenv").config(),
 	seeds      		= require("./seeds"),
 	User        	= require("./models/user"),
   	Comment     	= require("./models/comments"),
-	Campground  	= require("./models/cards"),
-	dotenv 			= require('dotenv').config();
+	Card		  	= require("./models/cards");
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
@@ -20,16 +21,17 @@ var commentRoutes    = require("./routes/comments"),
 	galleryRoutes 	 = require("./routes/gallery"),
     indexRoutes      = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/Artportfolio", 
-				{ useNewUrlParser: true },
-				 (err, res) => {
-					if (err) 
-						throw err;
-		console.log('mongoose online');
-		});
+var url = "mongodb://heroku_6lk1f10g:8b8m6t2oo0mdkdnm7v93bjrit4@ds063833.mlab.com:63833/heroku_6lk1f10g";   
 
-
-{ useUnifiedTopology: true }
+// Use connect method to connect to the Server
+mongoose.connect(url);
+app.use(require("express-session")({
+    secret: "We work until the work is done",
+    resave: false,
+    saveUninitialized: false,
+	useUnifiedTopology: true,
+	useNewUrlParser: true
+}));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -40,12 +42,6 @@ app.use(cookieParser('secret'));
 //seeds.seedDB(); //seed the database (removes whole library and adds seeds)
 //seeds.removeAll(); //removes whole library
 
-// PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "We work until the work is done",
-    resave: false,
-    saveUninitialized: false
-}));
 
 app.use(flash());
 app.use(passport.initialize());
