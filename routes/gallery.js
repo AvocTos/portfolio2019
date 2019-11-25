@@ -11,11 +11,9 @@ router.get("/", function(req, res){
        if(err){
            console.log(err);
        } else {
-           function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body); // Show the HTML for the Modulus homepage.
-                res.render("gallery/index",{card: allCards});
-            	}
+            console.log(body); // Show the HTML for the Modulus homepage.
+            res.render("gallery/index",{card: allCards});
+            }
 		});
        }
     });
