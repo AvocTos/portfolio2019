@@ -15,7 +15,7 @@ router.get("/", function(req, res){
             request('https://maps.googleapis.com/maps/api/geocode/json?address=sardine%20lake%20ca&key=AIzaSyBtHyZ049G_pjzIXDKsJJB5zMohfN67llM', function (error, response, body) {	
             if (!error && response.statusCode == 200) {	
                 console.log(body); // Show the HTML for the Modulus homepage.	
-                res.render("gallery/index",{card:allCards});	
+                res.render("gallery/index",{card: allCards});	
             }	
 		});	
        }	
@@ -73,9 +73,10 @@ router.get("/:id", function(req, res){
     });
 });
 
+
 //show edit page
 router.get("/:id/edit", middleware.checkUserCard, function(req, res){
-    console.log("IN EDIT!");
+    console.log("Card in edit");
     //find the card with provided ID
     Cards.findById(req.params.id, function(err, foundCards){
         if(err){
