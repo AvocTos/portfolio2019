@@ -66,7 +66,6 @@ router.get("/:id", function(req, res){
         if(err){
             console.log(err);
         } else {
-            console.log(foundCard)
             //render show template with that card
             res.render("gallery/show", {card: foundCard});
         }
