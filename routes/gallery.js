@@ -15,9 +15,7 @@ router.get("/", function(req, res){
             res.render("gallery/index",{card: allCards});
             }
 		});
-       }
     });
-});
 
 //CREATE - add new card to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
