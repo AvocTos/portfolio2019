@@ -8,12 +8,7 @@ p {
 
 .btn-xs {	
 	padding: 0.4rem 2.2rem;
-	padding-right: 1.5rem;
-	font-size: 0.4rem;
+	font-size: 0.7rem;
 	letter-spacing: 0.1rem;
 	text-transform: uppercase;
-}
-
-.caption, .caption-full {
-	color: #333;
 }
