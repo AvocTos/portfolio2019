@@ -14,6 +14,6 @@ p {
 	text-transform: uppercase;
 }
 
-h4, h1 {
+.caption, .caption-full {
 	color: #333;
-} 
+}
