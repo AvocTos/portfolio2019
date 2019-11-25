@@ -68,7 +68,7 @@ router.get("/:id", function(req, res){
         } else {
             console.log(foundCard)
             //render show template with that card
-            res.render("gallery/show", {Card: foundCard});
+            res.render("gallery/show", {cards: foundCard});
         }
     });
 });
