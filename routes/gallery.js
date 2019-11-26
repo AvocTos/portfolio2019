@@ -105,14 +105,14 @@ router.put("/:id", function(req, res){
     });
 });
 
-router.delete("/:id", function(req,res){
-		Cards.findByIdAndRemove(req.params.id, function(err){
-			if(err){
-				res.redirect("/gallery");
-			} else {
-				res.redirect("/gallery");
-			}
-		});
+router.delete("/:id", middleware.checkUserCard, function(req,res, next){
+		Cards.findById(req.params.id, function(err, card){
+			if(err) return next(err);
+			
+			card.remove();
+			req.flash('success', 'Card deleted Successfully');
+			res.redirect("/gallery");
+	});
 });
 
 module.exports = router;
