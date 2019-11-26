@@ -105,5 +105,8 @@ router.put("/:id", function(req, res){
     });
 });
 
+router.delete(":id", function(req,res){
+		res.send("you are trying to delete something");
+});
 
 module.exports = router;
