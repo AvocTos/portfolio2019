@@ -11,8 +11,8 @@
                     </p>
                     <% if(currentUser && card.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-warning" href="/gallery/<%= card._id %>/edit">Edit Card</a>
-					<form action="/gallery/<%= card._id %>?_method=DELETE" method="POST">
-						<button class="btn btn-danger"></button>
+					<form action="/gallery/<%= card._id %>?_method=DELETE" method="POST" id="delete-form">
+						<button class="btn btn-danger">Delete</button>
 					</form>
 					<% } %>
                 </div>
