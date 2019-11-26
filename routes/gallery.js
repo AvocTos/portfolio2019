@@ -106,7 +106,13 @@ router.put("/:id", function(req, res){
 });
 
 router.delete("/:id", function(req,res){
-		res.send("you are trying to delete something");
+		Cards.findByIdAndRemove(req.params.id, function(err){
+			if(err){
+				res.redirect("/gallery");
+			} else {
+				res.redirect("/gallery");
+			}
+		});
 });
 
 module.exports = router;
